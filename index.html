@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="table">
+        <form class="form" name="form">
+            <input type="text" class="form__input" placeholder="Enter city" name="input">
+            <button class="form__button" href="#!">
+                <img class="form__button-img" src="img/search.svg">
+            </button>
+        </form>
+
+        <div class="main">
+            <div class="weather">
+
+                <div class="info">
+                    <ul class="info__list">
+                        <li class="info__list-item" id="now">
+                            <div class="info__num">
+                                <span class="info__num-span"></span>
+                            </div>
+                            <div class="info__cloud">
+                                <img class="info__cloud-img">
+                            </div>
+                            <div class="info__city">
+                                <span class="info__city-span"></span>
+                                <button href="#!" class="info__city-link">
+                                    <img src="img/like.png" class="info__city-like">
+                                </button>
+                            </div>
+                        </li>
+                        <li class="info__list-item" id="details">
+                            <h4 class="info__title info__title-details">Aktobe</h4>
+                            <ul class="info__content">
+                                <li class="info__content-item">
+                                    <span class="info__content-key temperature-key">Temperature:</span>
+                                    <span class="info__content-value temperature-value"></span>
+                                </li>
+                                <li class="info__content-item">
+                                    <span class="info__content-key feels-key">Feels like:</span>
+                                    <span class="info__content-value feels-value"></span>
+                                </li>
+                                <li class="info__content-item">
+                                    <span class="info__content-key weather-key">Weather:</span>
+                                    <span class="info__content-value weather-value"></span>
+                                </li>
+                                <li class="info__content-item">
+                                    <span class="info__content-key sunrise-key">Sunrise:</span>
+                                    <span class="info__content-value sunrise-value"></span>
+                                </li>
+                                <li class="info__content-item">
+                                    <span class="info__content-key sunset-key">Sunset:</span>
+                                    <span class="info__content-value sunset-value"></span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="info__list-item" id="forecast">
+                            <h3 class="info__title">
+                                Aktobe
+                            </h3>
+                            <div class="box">
+                                <div class="box__row box__first">
+                                    <span class="box__row-date">17 May</span>
+                                    <span class="box__row-time">12:00</span>
+                                </div>
+                                <div class="box__row">
+                                    <span class="box__row-date">Temperature:13</span>
+                                    <span class="box__row-time">Rain</span>
+                                </div>
+                                <div class="box__row">
+                                    <span class="box__row-date">Feels like: 10</span>
+                                    <img src="img/rain.svg">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="box__row box__first">
+                                    <span class="box__row-date">17 May</span>
+                                    <span class="box__row-time">12:00</span>
+                                </div>
+                                <div class="box__row">
+                                    <span class="box__row-date">Temperature:13</span>
+                                    <span class="box__row-time">Rain</span>
+                                </div>
+                                <div class="box__row">
+                                    <span class="box__row-date">Feels like: 10</span>
+                                    <img src="img/rain.svg">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="box__row box__first">
+                                    <span class="box__row-date">17 May</span>
+                                    <span class="box__row-time">12:00</span>
+                                </div>
+                                <div class="box__row">
+                                    <span class="box__row-date">Temperature:13</span>
+                                    <span class="box__row-time">Rain</span>
+                                </div>
+                                <div class="box__row">
+                                    <span class="box__row-date">Feels like: 10</span>
+                                    <img src="img/rain.svg">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="buttons">
+                    <button class="buttons__mode button-now" id="now">
+                        <a class="buttons__mode-link" href="#now">Now</a>
+                    </button>
+                    <button class="buttons__mode button-details" id="details">
+                        <a class="buttons__mode-link" href="#details">Details</a>
+                    </button>
+                    <button class="buttons__mode button-forecast" id="forecast">
+                        <a class="buttons__mode-link" href="#forecast">Forecast</a>
+                    </button>
+                </div>
+
+            </div>
+            <div class="city">
+                <div class="city__title">Added Locations:</div>
+                <div class="city__names">
+                    <ul class="city__names-list">
+                        <!-- <li class="city__names-item">
+                            <a href="#!" class="city__names-link">
+                                Amur
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js" type="module"></script>
+
+</body>
+
+</html>
