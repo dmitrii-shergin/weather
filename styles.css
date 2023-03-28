@@ -73,7 +73,7 @@
 }
 
 .info__title {
-    padding: 10px 0 20px 0px
+    padding: 10px 0 10px 0px
 }
 
 .info__content {
@@ -137,19 +137,32 @@
     }
 
 .box {
-    border: 1px solid black;
-    margin: 10px 0 10px;
+    margin: 10px 0px 10px;
 }
 
 .box__row {
     display: flex;
+    margin-bottom: 12px;
+    align-items:center;
     justify-content: space-between;
-    margin-bottom: 10px;
-    align-items:center
 }
 
-.box__first {
-    margin-bottom: 40px ;
+.box__row-time{
+    font-weight: bold;
+}
+
+.box__row-weather {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.box__row-date{
+    font-size: 18px;
+}
+
+.box__row img {
+    height: 20px;
 }
 
 .buttons {

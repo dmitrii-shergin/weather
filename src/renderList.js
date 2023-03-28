@@ -13,7 +13,7 @@ function renderList() {
 
         cityLink.addEventListener('click', function () {
             renderCity(event, this.textContent)
-            saveCurrentCity(this.textContent)
+            saveCurrentCity(this.textContent, null)
         })
         cityDelete.addEventListener('click', deleteList)
     }

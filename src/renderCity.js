@@ -1,5 +1,5 @@
-import { addList } from "./storage.js"
-import { fetchCity } from "./api.js"
+import { addList, getCurrentCity, saveCurrentCity } from "./storage.js"
+import { fetchCity, fetchForecast } from "./api.js"
 
 const ADD_LIST = document.querySelector('.info__city-link')
 const NOW_TEMPERATURE = document.querySelector('.info__num-span')
@@ -14,11 +14,14 @@ const DETAILS_CITY = document.querySelector('.info__title-details')
 
 ADD_LIST.addEventListener('click', function () {
     addList(event, this.parentNode.querySelector('.info__city-span').textContent)
+    console.log(this.parentNode.querySelector('.info__city-span').textContent)
+    console.log(getCurrentCity())
 })
 
 async function renderCity(event, name) {
     event.preventDefault()
     const city = await fetchCity(name)
+    const forecast = await fetchForecast(name)
     renderCityNow(city)
     renderCityDetails(city)
 }
