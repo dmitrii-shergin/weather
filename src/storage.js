@@ -1,10 +1,10 @@
-import { renderList } from "./renderList.js"
+import { renderList } from "./render.js"
 import { fetchCity } from "./api.js"
 
 function saveCurrentCity(name, city) {
     let currentCityString
     if (name) {
-        const currentCity = Array.from(getFavoriteCities()).find(city => city.name === name)
+        const currentCity = getFavoriteCities().find(city => city.name === name)
         currentCityString = currentCity ? JSON.stringify(currentCity) : null
     } else if (city) {
         currentCityString = city ? JSON.stringify(city) : null
@@ -13,7 +13,7 @@ function saveCurrentCity(name, city) {
 }
 
 function getCurrentCity() {
-    const favoriteCities = Array.from(getFavoriteCities())
+    const favoriteCities = getFavoriteCities()
     if (favoriteCities.length) {
         const currentCityString = localStorage.getItem('currentCity')
         const currentCity = currentCityString ? JSON.parse(currentCityString) : null
@@ -21,7 +21,7 @@ function getCurrentCity() {
             return currentCity
         } else return favoriteCities[favoriteCities.length - 1]
     } else {
-        saveCurrentCity('', '')
+        saveCurrentCity(null, null)
         return null
     }
 }
@@ -34,12 +34,11 @@ function saveFavoriteCities(list) {
 function getFavoriteCities() {
     const storageString = localStorage.getItem('storageList')
     const storageArray = JSON.parse(storageString) || []
-    const storageSet = storageArray.length ? new Set(storageArray) : new Set()
-    return storageSet
+    return storageArray
 }
 
 function deleteList() {
-    const list = Array.from(getFavoriteCities())
+    const list = getFavoriteCities()
     const name = this.parentNode.querySelector('.city__names-link').textContent
     const cityIndex = list.findIndex(city => city.name === name)
     if (cityIndex != -1) {
@@ -51,7 +50,7 @@ function deleteList() {
 
 async function addList(event, name) {
     event.preventDefault()
-    const list = Array.from(getFavoriteCities())
+    const list = getFavoriteCities()
     const city = await fetchCity(name)
     if (city && !list.find(city => city.name === name)) {
         list.push(city);

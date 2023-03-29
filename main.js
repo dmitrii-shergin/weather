@@ -1,7 +1,5 @@
-import { renderList } from './src/renderList.js'
-import { renderCity } from './src/renderCity.js'
+import { renderCity, renderList } from './src/render.js'
 import { getCurrentCity } from './src/storage.js'
-import { fetchForecast } from './src/api.js'
 
 const FORM = document.forms.form
 
