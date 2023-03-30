@@ -6,8 +6,6 @@ const BUTTON = document.querySelector('.buttons')
 const BUTTONS = document.querySelectorAll('.buttons__mode')
 const TABS = document.querySelectorAll('.info__list-item')
 
-BUTTON.addEventListener('click', onTabClick)
-
 renderList()
 
 window.addEventListener('load', function () {
@@ -22,22 +20,14 @@ FORM.addEventListener('submit', function () {
     this.input.value = ''
 })
 
-function onTabClick(event) {
+BUTTON.addEventListener('click', showActiveTab)
+
+function showActiveTab(event) {
     let currentBtn = event.target
-    let tabId = currentBtn.id
-    let currentTab = document.querySelector(`#${tabId}__weather`);
-
-    if (!currentBtn.classList.contains('active')) {
-        console.log(currentTab)
-        BUTTONS.forEach(btn => {
-            btn.classList.remove('active')
-        })
-        TABS.forEach(tab => {
-            tab.classList.remove('active')
-        })
-
-    }
-
+    let tabId = `#${currentBtn.id}__weather`
+    let currentTab = document.querySelector(tabId);
+    BUTTONS.forEach(btn => btn.classList.remove('active'))
+    TABS.forEach(tab => tab.classList.remove('active'))
     currentBtn.classList.add('active')
     currentTab.classList.add('active')
 }
