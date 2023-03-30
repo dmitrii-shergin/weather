@@ -69,7 +69,7 @@
 .info {
     height:  400px;
     width: 300px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .info__title {
@@ -88,7 +88,13 @@
     list-style-type: none;
 } 
 
-.info__list-item {    
+.info__list-item {
+    display: none;
+}
+
+.info__list-item.active {  
+    height:  400px;
+    width: 300px;  
     display: flex;
     flex-direction: column;
     height:  400px;
@@ -186,19 +192,10 @@
     border-left: 1px solid black;
 }
 
-.buttons__mode-link:active {
-    color: white;
+.buttons .active {
+    display: block;
     background-color: black;
-}
-
-.buttons__mode-link{
-    display: flex;
-    text-decoration:none;
-    color: black;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+    color: white;
 }
 
 .city {

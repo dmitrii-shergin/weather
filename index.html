@@ -23,8 +23,8 @@
             <div class="weather">
 
                 <div class="info">
-                    <ul class="info__list">
-                        <li class="info__list-item" id="now">
+                    <div class="info__list">
+                        <div class="info__list-item active" id="now__weather">
                             <div class="info__num">
                                 <span class="info__num-span"></span>
                             </div>
@@ -37,8 +37,8 @@
                                     <img src="img/like.png" class="info__city-like">
                                 </button>
                             </div>
-                        </li>
-                        <li class="info__list-item" id="details">
+                        </div>
+                        <div class="info__list-item" id="details__weather">
                             <h4 class="info__title info__title-details"></h4>
                             <ul class="info__content">
                                 <li class="info__content-item">
@@ -62,8 +62,8 @@
                                     <span class="info__content-value sunset-value"></span>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="info__list-item" id="forecast">
+                        </div>
+                        <div class="info__list-item" id="forecast__weather">
                             <h3 class="info__title info__title-forecast"> </h3>
                             <div class="box">
 
@@ -89,19 +89,19 @@
 
                             </div>
 
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="buttons">
-                    <button class="buttons__mode button-now" id="now">
-                        <a class="buttons__mode-link" href="#now">Now</a>
+                    <button class="buttons__mode button-now active" id="now">
+                        Now
                     </button>
                     <button class="buttons__mode button-details" id="details">
-                        <a class="buttons__mode-link" href="#details">Details</a>
+                        Details
                     </button>
                     <button class="buttons__mode button-forecast" id="forecast">
-                        <a class="buttons__mode-link" href="#forecast">Forecast</a>
+                        Forecast
                     </button>
                 </div>
 
