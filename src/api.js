@@ -34,7 +34,9 @@ function getCity(data) {
     const sunsetDate = getActualDate(data.sys.sunset, data.timezone)
     const sunrise = `${sunriseDate.getHours()} : ${sunriseDate.getMinutes()}`
     const sunset = `${sunsetDate.getHours()} : ${sunsetDate.getMinutes()}`
-    return { temperature, weatherSrc, name, feelsLike, weather, sunrise, sunset }
+    const likeSrc = 'img/likeY.png'
+    const disLikeSrc = 'img/likeN.png'
+    return { temperature, weatherSrc, name, feelsLike, weather, sunrise, sunset, likeSrc, disLikeSrc }
 }
 
 function getForecast(data) {

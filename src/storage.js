@@ -37,9 +37,8 @@ function getFavoriteCities() {
     return storageArray
 }
 
-function deleteList() {
+function deleteList(name) {
     const list = getFavoriteCities()
-    const name = this.parentNode.querySelector('.city__names-link').textContent
     const cityIndex = list.findIndex(city => city.name === name)
     if (cityIndex != -1) {
         list.splice(cityIndex, 1)

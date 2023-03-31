@@ -2,6 +2,7 @@ import { addList, getFavoriteCities, saveCurrentCity, deleteList } from "./stora
 import { fetchCity, fetchForecast } from "./api.js"
 
 const ADD_LIST = document.querySelector('.info__city-link')
+const LIKE = document.querySelector('.info__city-like')
 const NOW_TEMPERATURE = document.querySelector('.info__num-span')
 const NOW_WEATHER = document.querySelector('.info__cloud-img')
 const NOW_CITY = document.querySelector('.info__city-span')
@@ -16,7 +17,9 @@ const FORECAST_BOX = document.querySelector('.box')
 const CITY_LIST = document.querySelector('.city__names-list')
 
 ADD_LIST.addEventListener('click', function () {
-    addList(event, this.parentNode.querySelector('.info__city-span').textContent)
+    const cityName = this.parentNode.querySelector('.info__city-span').textContent
+    addList(event, cityName)
+    renderCity(event, cityName)
 })
 
 async function renderCity(event, name) {
@@ -32,6 +35,8 @@ function renderCityNow(city) {
     NOW_TEMPERATURE.textContent = city.temperature + '\u00B0'
     NOW_WEATHER.src = city.weatherSrc
     NOW_CITY.textContent = city.name
+    const isCityInList = getFavoriteCities().find(el => el.name === city.name)
+    LIKE.src = isCityInList ? city.likeSrc : city.disLikeSrc
 }
 
 function renderCityDetails(city) {
@@ -68,10 +73,15 @@ function renderList() {
         CITY_LIST.append(cityItem)
 
         cityLink.addEventListener('click', function () {
-            renderCity(event, this.textContent)
-            saveCurrentCity(this.textContent, null)
+            const name = this.textContent
+            renderCity(event, name)
+            saveCurrentCity(name, null)
         })
-        cityDelete.addEventListener('click', deleteList)
+        cityDelete.addEventListener('click', function () {
+            const name = this.parentNode.querySelector('.city__names-link').textContent
+            deleteList(name)
+            renderCity(event, name)
+        })
     }
 }
 
