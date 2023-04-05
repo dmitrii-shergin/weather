@@ -11,111 +11,73 @@
 </head>
 
 <body>
-    <div class="table">
-        <form class="form" name="form">
-            <input type="text" class="form__input" placeholder="Enter city" name="input">
-            <button class="form__button" href="#!">
+    <div class="wrapper">
+
+        <form class="form">
+            <input class="form__input" placeholder="Enter city" name="input">
+            <button class="form__button">
                 <img class="form__button-img" src="img/search.svg">
             </button>
         </form>
 
         <div class="main">
+
             <div class="weather">
-
                 <div class="info">
-                    <div class="info__list">
-                        <div class="info__list-item active" id="now__weather">
-                            <div class="info__num">
-                                <span class="info__num-span"></span>
-                            </div>
-                            <div class="info__cloud">
-                                <img class="info__cloud-img">
-                            </div>
-                            <div class="info__city">
-                                <span class="info__city-span"></span>
-                                <button href="#!" class="info__city-link">
-                                    <img class="info__city-like">
-                                </button>
-                            </div>
+                    <div class="now info__tab active" id="now__tab">
+                        <span class="now__temp"></span>
+                        <img class="now__weather">
+                        <div class="now__city">
+                            <span class="now__city-name"></span>
+                            <button class="now__city-btn">
+                                <img class="now__city-img">
+                            </button>
                         </div>
-                        <div class="info__list-item" id="details__weather">
-                            <h4 class="info__title info__title-details"></h4>
-                            <ul class="info__content">
-                                <li class="info__content-item">
-                                    <span class="info__content-key temperature-key">Temperature:</span>
-                                    <span class="info__content-value temperature-value"></span>
-                                </li>
-                                <li class="info__content-item">
-                                    <span class="info__content-key feels-key">Feels like:</span>
-                                    <span class="info__content-value feels-value"></span>
-                                </li>
-                                <li class="info__content-item">
-                                    <span class="info__content-key weather-key">Weather:</span>
-                                    <span class="info__content-value weather-value"></span>
-                                </li>
-                                <li class="info__content-item">
-                                    <span class="info__content-key sunrise-key">Sunrise:</span>
-                                    <span class="info__content-value sunrise-value"></span>
-                                </li>
-                                <li class="info__content-item">
-                                    <span class="info__content-key sunset-key">Sunset:</span>
-                                    <span class="info__content-value sunset-value"></span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="info__list-item" id="forecast__weather">
-                            <h3 class="info__title info__title-forecast"> </h3>
-                            <div class="box">
+                    </div>
 
-                                <!-- <div class="box__item">
-                                    <div class="box__row row1">
-                                        <span class="box__row-time">00:00</span>
-                                        <div class="box__row-weather">
-                                            <span class="weather__desc">Rain</span>
-                                            <img class="weather__img" src="img/rain.svg">
-                                        </div>
-                                    </div>
-                                    <div class="box__row row2">
-                                        <div class="box__row-temperature">
-                                            <span class="temperature-key">Temperature:</span>
-                                            <span class="temperature-value">13</span>
-                                        </div>
-                                        <div class="box__row-feels">
-                                            <span class="feels-key">Feels like:</span>
-                                            <span class="feels-value">10</span>
-                                        </div>
-                                    </div>
-                                </div> -->
+                    <div class="details info__tab" id="details__tab">
+                        <h4 class="details__title"></h4>
+                        <ul class="details__list">
+                            <li class="details__item details__temp"></li>
+                            <li class="details__item details__feels"></li>
+                            <li class="details__item details__weather"></li>
+                            <li class="details__item details__sunrise"></li>
+                            <li class="details__item details__sunset"></li>
+                        </ul>
+                    </div>
 
-                            </div>
-                        </div>
+                    <div class="forecast info__tab" id="forecast__tab">
+                        <h4 class="forecast__title"> </h4>
+                        <ul class="forecast__list">
+                            <li class="forecast__item">
+                                <div class="forecast__row">
+                                    <span class="forecast__time"></span>
+                                    <div class="forecast__weather"> <img class="forecast__weather-img"> </div>
+                                </div>
+                                <div class="forecast__row">
+                                    <span class="forecast__temperature"></span>
+                                    <span class="forecast__feels"></span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="buttons">
-                    <button class="buttons__mode button-now active" id="now">
-                        Now
-                    </button>
-                    <button class="buttons__mode button-details" id="details">
-                        Details
-                    </button>
-                    <button class="buttons__mode button-forecast" id="forecast">
-                        Forecast
-                    </button>
+                    <button class="buttons__mode active" id="now"> Now </button>
+                    <button class="buttons__mode" id="details"> Details </button>
+                    <button class="buttons__mode" id="forecast"> Forecast </button>
                 </div>
-
             </div>
+
             <div class="city">
-                <div class="city__title">Added Locations:</div>
-                <div class="city__names">
-                    <ul class="city__names-list">
-                        <!-- <li class="city__names-item">
-                            <a href="#!" class="city__names-link">
-                                Amur
-                            </a>
-                        </li> -->
-                    </ul>
-                </div>
+                <h4 class="city__title">Added Locations:</h4>
+                <ul class="city__list">
+                    <li class="city__item">
+                        <a href="#!" class="city__item-name"></a>
+                        <button class="city__item-delete"></button>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
