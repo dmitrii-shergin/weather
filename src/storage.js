@@ -1,27 +1,27 @@
-import { renderList } from "./render.js"
+import { renderCity, renderList } from "./render.js"
 import { fetchCity } from "./api.js"
 
-function saveCurrentCity(name, city) {
-    let currentCityString
-    if (name) {
-        const currentCity = getFavoriteCities().find(city => city.name === name)
-        currentCityString = currentCity ? JSON.stringify(currentCity) : null
-    } else if (city) {
-        currentCityString = city ? JSON.stringify(city) : null
-    }
+function saveCurrentCity(name) {
+    const currentCity = getFavoriteCities().find(city => city.name === name)
+    let currentCityString = currentCity ? JSON.stringify(currentCity) : null
     localStorage.setItem('currentCity', currentCityString)
 }
 
 function getCurrentCity() {
     const favoriteCities = getFavoriteCities()
     if (favoriteCities.length) {
+        console.log(localStorage)
         const currentCityString = localStorage.getItem('currentCity')
         const currentCity = currentCityString ? JSON.parse(currentCityString) : null
-        if (favoriteCities.find(city => city.name === currentCity.name)) {
+        if (currentCity && favoriteCities.find(city => city.name === currentCity.name)) {
             return currentCity
-        } else return favoriteCities[favoriteCities.length - 1]
+        } else {
+            const lastCity = favoriteCities[favoriteCities.length - 1]
+            saveCurrentCity(lastCity.name)
+            return lastCity
+        }
     } else {
-        saveCurrentCity(null, null)
+        saveCurrentCity(null)
         return null
     }
 }
@@ -37,26 +37,23 @@ function getFavoriteCities() {
     return storageArray
 }
 
-function deleteList(name) {
+async function addRemoveCity(name) {
     const list = getFavoriteCities()
     const cityIndex = list.findIndex(city => city.name === name)
-    if (cityIndex != -1) {
+    if (cityIndex === -1) {
+        const city = await fetchCity(name)
+        list.push(city)
+        saveCurrentCity(name)
+    } else {
         list.splice(cityIndex, 1)
+        if (list.length) {
+            saveCurrentCity(list[list.length - 1].name)
+            renderCity(list[list.length - 1].name)
+        }
     }
+
     saveFavoriteCities(list)
     renderList()
 }
 
-async function addList(event, name) {
-    event.preventDefault()
-    const list = getFavoriteCities()
-    const city = await fetchCity(name)
-    if (city && !list.find(city => city.name === name)) {
-        list.push(city);
-    }
-    saveCurrentCity(null, city)
-    saveFavoriteCities(list)
-    renderList()
-}
-
-export { saveCurrentCity, getCurrentCity, getFavoriteCities, deleteList, addList }
+export { saveCurrentCity, getCurrentCity, getFavoriteCities, addRemoveCity }

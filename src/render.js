@@ -1,7 +1,6 @@
-import { addList, getFavoriteCities, saveCurrentCity, deleteList } from "./storage.js"
+import { getFavoriteCities } from "./storage.js"
 import { fetchCity, fetchForecast } from "./api.js"
 
-const ADD_LIST = document.querySelector('.now__city-btn')
 const LIKE = document.querySelector('.now__city-img')
 const NOW_TEMPERATURE = document.querySelector('.now__temp')
 const NOW_WEATHER = document.querySelector('.now__weather')
@@ -16,14 +15,7 @@ const FORECAST_TITLE = document.querySelector('.forecast__title')
 const FORECAST_LIST = document.querySelector('.forecast__list')
 const CITY_LIST = document.querySelector('.city__list')
 
-ADD_LIST.addEventListener('click', function () {
-    const cityName = this.parentNode.querySelector('.now__city-name').textContent
-    addList(event, cityName)
-    renderCity(event, cityName)
-})
-
-async function renderCity(event, name) {
-    event.preventDefault()
+async function renderCity(name) {
     const city = await fetchCity(name)
     const forecast = await fetchForecast(name)
     renderCityNow(city)
@@ -67,21 +59,8 @@ function renderCityForecast(forecast, name) {
 function renderList() {
     CITY_LIST.innerHTML = ''
     for (let city of getFavoriteCities()) {
-        const cityLink = createElement('a', { href: '#!', class: 'city__item-name' }, [city.name])
-        const cityDelete = createElement('button', { class: 'city__item-delete' }, ['X'])
-        const cityItem = createElement('li', { class: 'city__item' }, [cityLink, cityDelete])
+        const cityItem = createElement('li', { class: 'city__item' }, [city.name])
         CITY_LIST.append(cityItem)
-
-        cityLink.addEventListener('click', function () {
-            const name = this.textContent
-            renderCity(event, name)
-            saveCurrentCity(name, null)
-        })
-        cityDelete.addEventListener('click', function () {
-            const name = this.parentNode.querySelector('.city__item-name').textContent
-            deleteList(name)
-            renderCity(event, name)
-        })
     }
 }
 
@@ -97,4 +76,4 @@ function createElement(tagName, attributes = {}, children = []) {
     return element
 }
 
-export { renderCity, createElement, renderList }
+export { renderCity, renderList }
