@@ -30,10 +30,10 @@ function getCity(data) {
     const weatherSrc = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`
     const feelsLike = Math.round(data.main.feels_like)
     const weather = data.weather[0].main
-    const sunriseDate = getActualDate(data.sys.sunrise, data.timezone)
-    const sunsetDate = getActualDate(data.sys.sunset, data.timezone)
-    const sunrise = `${sunriseDate.getHours()} : ${sunriseDate.getMinutes()}`
-    const sunset = `${sunsetDate.getHours()} : ${sunsetDate.getMinutes()}`
+    const sunriseDate = getFormatDate(getActualDate(data.sys.sunrise * 1000, data.timezone))
+    const sunsetDate = getFormatDate(getActualDate(data.sys.sunset * 1000, data.timezone))
+    const sunrise = `${sunriseDate.hour} : ${sunriseDate.minute}`
+    const sunset = `${sunsetDate.hour} : ${sunsetDate.minute}`
     const likeSrc = 'img/likeY.png'
     const disLikeSrc = 'img/likeN.png'
     return { temperature, weatherSrc, name, feelsLike, weather, sunrise, sunset, likeSrc, disLikeSrc }
@@ -43,9 +43,10 @@ function getForecast(data) {
     const list = data.list.slice(1, 10).filter((_item, index) => index % 2 === 0)
     const forecast = []
     list.forEach(elem => {
-        const dataDate = new Date(elem.dt_txt)
-        const date = dataDate.toLocaleDateString().slice(0, 5)
-        const time = `${dataDate.getHours()} : ${dataDate.getMinutes()}0`
+        const dataDate = getActualDate(new Date(elem.dt_txt).getTime(), data.city.timezone)
+        const formatDataDate = getFormatDate(dataDate)
+        const date = `${formatDataDate.day}.${formatDataDate.month}`
+        const time = `${formatDataDate.hour}:${formatDataDate.minute}`
         const temperature = Math.round(elem.main.temp)
         const weather = elem.weather[0].main
         const weatherSrc = `https://openweathermap.org/img/wn/${elem.weather[0].icon}@2x.png`
@@ -55,8 +56,16 @@ function getForecast(data) {
     return forecast
 }
 
+function getFormatDate(dataDate) {
+    const day = dataDate.getDate().toString().padStart(2, '0')
+    const month = (dataDate.getMonth() + 1).toString().padStart(2, '0')
+    const hour = dataDate.getHours().toString().padStart(2, '0')
+    const minute = dataDate.getMinutes().toString().padStart(2, '0')
+    return { day, month, hour, minute }
+}
+
 function getActualDate(cityTime, cityOffset) {
-    const cityDate = new Date(cityTime * 1000)
+    const cityDate = new Date(cityTime)
     const myDate = new Date()
     const cityTimeMs = cityDate.getTime()
     const cityOffsetMs = cityOffset * 1000

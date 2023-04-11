@@ -33,11 +33,11 @@ function renderCityNow(city) {
 
 function renderCityDetails(city) {
     DETAILS_CITY.textContent = city.name
-    DETAILS_TEMPERATURE.textContent = `Temperature : ${city.temperature}`
-    DETAILS_FEELS.textContent = `Feels like : ${city.feelsLike}`
-    DETAILS_WEATHER.textContent = `Weather : ${city.weather}`
-    DETAILS_SUNRISE.textContent = `Sunrise : ${city.sunrise}`
-    DETAILS_SUNSET.textContent = `Sunset : ${city.sunset}`
+    DETAILS_TEMPERATURE.textContent = `Temperature: ${city.temperature}\u00B0`
+    DETAILS_FEELS.textContent = `Feels like: ${city.feelsLike}\u00B0`
+    DETAILS_WEATHER.textContent = `Weather: ${city.weather}`
+    DETAILS_SUNRISE.textContent = `Sunrise: ${city.sunrise}`
+    DETAILS_SUNSET.textContent = `Sunset: ${city.sunset}`
 }
 
 function renderCityForecast(forecast, name) {
@@ -47,8 +47,8 @@ function renderCityForecast(forecast, name) {
         const time = createElement('span', { class: 'forecast__time' }, [`${elem.date} - ${elem.time}`])
         const weatherImg = createElement('img', { class: 'forecast__weather-img', src: elem.weatherSrc }, [])
         const weather = createElement('div', { class: 'forecast__weather' }, [elem.weather, weatherImg])
-        const temperature = createElement('div', { class: 'forecast__temperature' }, [`Temperature: ${elem.temperature}`])
-        const feelsLike = createElement('div', { class: 'forecast__feels' }, [`Feels like: ${elem.feelsLike}`])
+        const temperature = createElement('div', { class: 'forecast__temperature' }, [`Temperature: ${elem.temperature}\u00B0`])
+        const feelsLike = createElement('div', { class: 'forecast__feels' }, [`Feels like: ${elem.feelsLike}\u00B0`])
         const timeWeather = createElement('div', { class: 'forecast__row' }, [time, weather])
         const tempFeels = createElement('div', { class: 'forecast__row' }, [temperature, feelsLike])
         const item = createElement('li', { class: 'forecast__item' }, [timeWeather, tempFeels])
